@@ -17,6 +17,24 @@ app.post("/api/post", (req, res) => {
   });
 });
 
+app.post("/api/login", async (req, res) => {
+  // Test user
+  const user = {
+    id: 1,
+    username: "charles",
+    email: "charles@gmail.com"
+  };
+  // can be done sync or async
+  // user, payload
+
+  try {
+    const token = await jwt.sign({ user }, "secretKey");
+    res.json({ token });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 app.listen(5000, () => {
   console.log("App started on port 5000");
 });
