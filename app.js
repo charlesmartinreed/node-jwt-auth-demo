@@ -34,9 +34,9 @@ app.post("/api/login", async (req, res) => {
   };
   // can be done sync or async
   // user, payload
-
+  // other options, like expiration date can also be passed in
   try {
-    const token = await jwt.sign({ user }, "secretKey");
+    const token = await jwt.sign({ user }, "secretKey", { expiresIn: "30s" });
     res.json({ token });
   } catch (err) {
     console.log(err);
